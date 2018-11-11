@@ -1,19 +1,30 @@
 package com.infosys.nsk.jersey;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/world")
+import com.infosys.nsk.jersey.model.User;
+import com.infosys.nsk.jersey.service.UserService;
+
+@Path("/users")
 public class MyMessengerResource {
 
-	@GET
-	@Produces(MediaType.APPLICATION_ATOM_XML)
-	public String viewProfile() {
+	UserService user_service;
 
-		return "Welcome to RestFul Webservice World";
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public List<User> viewProfile() {
+
+		user_service = new UserService();
+		return user_service.getAllUserdetails();
 
 	}
+	
+	
+	
 
 }
